@@ -1,0 +1,626 @@
+{
+  "requestId": "71a047a2-9f41-42f2-922e-0f9deb47dc83",
+  "testId": "1",
+  "name": "1",
+  "testData": {
+    "id": "1",
+    "description": "Day Shift - Scheduled - Strict - Worked during shift time",
+    "usecase_runconfig": {
+      "start_date": "2020-06-29",
+      "end_date": "2020-06-29",
+      "is_holiday": false,
+      "employee": {
+        "id": "500006740",
+        "group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
+        "powerUIPopulationGroup": "IT_PN_AmazonPartTimeHourly"
+      }
+    },
+    "days": [
+      {
+        "day": "2020-06-29",
+        "shifts": [
+          {
+            "shift_id": "1",
+            "intervals": [
+              {
+                "interval_id": "1",
+                "interval_type": "Regular Strict",
+                "start_time": "2020-06-29T08:00:00Z",
+                "end_time": "2020-06-29T12:00:00Z",
+                "pay_modifier": [],
+                "duration_in_minutes": "",
+                "interval_types": "Regular Strict",
+                "schema": {
+                  "name": "Fixed_Interval",
+                  "version": "1"
+                },
+                "isPunchExpected": true,
+                "isBreak": false,
+                "isWork": true
+              }
+            ]
+          }
+        ],
+        "punches": [
+          {
+            "timestamp": "2020-06-29T08:00:00Z",
+            "inouthint": "in"
+          },
+          {
+            "timestamp": "2020-06-29T12:00:00Z",
+            "inouthint": "out"
+          }
+        ],
+        "timeoffs": [],
+        "policies": [
+          {
+            "name": "RegularHours-Italy-PN",
+            "value": "4",
+            "shift_interval_id": "1_1"
+          },
+          {
+            "name": "MealVoucher-Italy-PN",
+            "value": "0",
+            "shift_interval_id": "1_1"
+          }
+        ],
+        "anomalies": [],
+        "infractions": []
+      }
+    ],
+    "location": {
+      "region": "ITA",
+      "lineOfBusiness": "PN",
+      "site": "UIT4",
+      "siteIdV2": "1944",
+      "timeZone": "Europe/Amsterdam"
+    },
+    "finishExecution": false
+  },
+  "status": "FAILED",
+  "logsLink": "https://console.aws.amazon.com/states/home?region=us-west-2#/executions/details/arn:aws:states:us-west-2:774139607587:execution:PunchToPayWorkflowV2-tzOmvQo3Zx4D:5e427ebe-f1a7-417b-ab40-54fe3537cfb8",
+  "startDateTime": 1614553993182,
+  "lastUpdatedDateTime": 1614553984214,
+  "failureReason": {
+    "Error": "Exception",
+    "Cause": "{\"errorMessage\": \"Validation failure : {'2020-06-29': {'mismatches': [], 'missing': [], 'additional': [{'name': 'Holiday-Italy-PN', 'value': 'Holiday'}, {'name': 'Premium30-Italy-PN', 'value': '4.00'}]}}\", \"errorType\": \"Exception\", \"stackTrace\": [[\"/var/task/ExecutionEngineLambda/lambdas/edd_validation_test_steps.py\", 38, \"pay_data_edd_validation_v2\", \"raise error\"], [\"/var/task/ExecutionEngineLambda/lambdas/edd_validation_test_steps.py\", 34, \"pay_data_edd_validation_v2\", \"edd_validation_helper.validate_pay_codes_from_edd(test_data, edd_version=\\\"v2\\\")\"], [\"/var/task/ExecutionEngineLambda/lambdas/helpers/edd_validation_helper.py\", 204, \"validate_pay_codes_from_edd\", \"raise Exception(f\\\"Validation failure : {all_results}\\\")\"]]}"
+  },
+  "description": "Day Shift - Scheduled - Strict - Worked during shift time",
+  "retries": 1,
+  "failureException": "Exception",
+  "testType": null,
+  "ttl": 1617145983,
+  "employee_id": "500006740",
+  "population_group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
+  "start_date": "2020-06-29",
+  "end_date": "2020-06-29",
+  "errorMessage": "Validation failure : {'2020-06-29': {'mismatches': [], 'missing': [], 'additional': [{'name': 'Holiday-Italy-PN', 'value': 'Holiday'}, {'name': 'Premium30-Italy-PN', 'value': '4.00'}]}}",
+  "taapi_request_id, url and PPE_EVAL_STATUS": "65c63c91-8837-4d88-b448-e2a03bab0119,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740?expand=profiles%252Cattributes,None\\na6585fbd-aa42-460b-813d-ef25d3b089ca,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740?expand=profiles%252Cattributes,None\\n2ddfdc78-e04d-4d5f-8293-7dcd079ba227,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740?expand=profiles%252Cattributes,None\\nd4d497d5-990c-4619-941b-226d5b6f1658,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n377fec21-77be-4e32-a8d8-7ed82703bfb1,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/punches,None\\nbf08d886-050f-4c5d-b413-685a3598c313,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-06-28T22%253A00%253A00Z&endDateTime=2020-06-29T21%253A59%253A59Z&employeeId=500006740,None\\n0b74f21b-46bb-4b52-8862-21d27152591a,https://beta.api.time-attendance.a2z.com/v4/shifts/WES-e4bbf526-0742-e0a3-1744-615d1b801611,None\\n6ad472b4-5a8e-45ce-90a4-16f378a5f51c,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-06-28T22%253A00%253A00Z&endDateTime=2020-06-29T21%253A59%253A59Z&employeeId=500006740,None\\n5eaace39-351a-4d90-835f-09f57f0e57f1,https://beta.api.time-attendance.a2z.com/v1/time-off/requests?subjectId=500006740&startDateTime=2020-06-28T22%253A00%253A00Z&endDateTime=2020-06-29T21%253A59%253A00Z,None\\n2c50a4f2-6d63-4794-8b19-97076861cdec,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n0eba27c2-0329-44bd-8abc-51c341f71da9,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n94246915-2ee1-49ff-96bc-018456019e3e,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\nef80c32c-689b-4e9a-b317-e6fc2c824f70,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=timeOffData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n330133ea-e9c7-44bf-a567-62d78ea94bb8,https://beta.api.time-attendance.a2z.com/v4/shifts,None\\nf1d11521-f62f-4e38-b8d3-82574dc00086,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/punches,None\\nfab1d2c4-0f13-4057-b544-655df5185b07,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n381d1d1d-c133-44e9-b1e0-c63da7111d3d,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=timeOffData&documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n10e90309-3bb2-40cc-a8a5-4c3afc9b87fd,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=anomalyData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n53ae55c2-4664-4cfa-8b68-0fb74e2a342a,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=observedData&documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\nd732f0af-cf02-4ebf-a0fb-ba313ff23217,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=consolidatedPayData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n",
+  "flow_of_control": "ExecutionEngineLambda-PantherCo-initializeTestData-1XJG83CBYRKG9\\nExecutionEngineLambda-Panth-clearAllEmployeeDataV2-IYPDZQKMVHP9\\nExecutionEngineLambda-PunchToPayStack-createShifts-Z6SL5SJOYCOT\\nExecutionEngineLambda-Pan-createTimeoffsWithSegmen-1JURHZR7H948G\\nExecutionEngineLambda-PunchToPaySt-createPunchesv2-T54M09DF04JA\\nExecutionEngineLambda-PantherC-validateShiftsEDDv2-1U3NKQQSPL79B\\nExecutionEngineLambda-Panther-validateTimeOffEDDv2-LYRH9YV4X1NF\\nExecutionEngineLambda-Panth-validateAnomaliesEDDv2-8DW6QJ564STN\\nExecutionEngineLambda-PantherComm-validateTaskList-1R87XPQUOJ5FI\\nExecutionEngineLambda-Panther-validatePunchesEDDv2-MMXGQBLSFBE7\\nExecutionEngineLambda-Panther-validatePayDataEDDv2-1JB94GK0SLDC\\n",
+  "anomalies": "undefined\\n"
+}
+{
+  "requestId": "71a047a2-9f41-42f2-922e-0f9deb47dc83",
+  "testId": "2",
+  "name": "2",
+  "testData": {
+    "id": "2",
+    "description": "RestDay test",
+    "usecase_runconfig": {
+      "start_date": "2020-06-26",
+      "end_date": "2020-06-26",
+      "is_holiday": false,
+      "employee": {
+        "id": "500006752",
+        "group": "Agency_Part_Time_Hourly_TRD-ITALY-PN",
+        "powerUIPopulationGroup": "IT_PN_AgencyPartTimeHourly"
+      }
+    },
+    "days": [
+      {
+        "day": "2020-06-26",
+        "shifts": [
+          {
+            "shift_id": "1",
+            "intervals": [
+              {
+                "interval_id": "1",
+                "interval_type": "Regular Strict",
+                "start_time": "2020-06-26T22:00:00Z",
+                "end_time": "2020-06-27T04:00:00Z",
+                "pay_modifier": [
+                  {
+                    "schema": {
+                      "name": "DualAttributeSchema",
+                      "version": "1"
+                    },
+                    "payModifierName": "Rest Day",
+                    "variable": "1"
+                  }
+                ],
+                "duration_in_minutes": "",
+                "interval_types": "Regular Strict",
+                "schema": {
+                  "name": "Fixed_Interval",
+                  "version": "1"
+                },
+                "isPunchExpected": true,
+                "isBreak": false,
+                "isWork": true
+              }
+            ]
+          }
+        ],
+        "punches": [
+          {
+            "timestamp": "2020-06-26T22:00:00Z",
+            "inouthint": "in"
+          },
+          {
+            "timestamp": "2020-06-27T04:00:00Z",
+            "inouthint": "out"
+          }
+        ],
+        "timeoffs": [],
+        "policies": [
+          {
+            "name": "SupplimentaryHours35-Italy-PN",
+            "value": "6",
+            "shift_interval_id": "1_1"
+          },
+          {
+            "name": "MealVoucher-Italy-PN",
+            "value": "1",
+            "shift_interval_id": "1_1"
+          }
+        ],
+        "anomalies": [],
+        "infractions": []
+      }
+    ],
+    "location": {
+      "region": "ITA",
+      "lineOfBusiness": "PN",
+      "site": "UIT4",
+      "siteIdV2": "1944",
+      "timeZone": "Europe/Amsterdam"
+    },
+    "finishExecution": false
+  },
+  "status": "FAILED",
+  "logsLink": "https://console.aws.amazon.com/states/home?region=us-west-2#/executions/details/arn:aws:states:us-west-2:774139607587:execution:PunchToPayWorkflowV2-tzOmvQo3Zx4D:11497c85-b48c-4e7f-a3c0-07409aba3987",
+  "startDateTime": 1614553993272,
+  "lastUpdatedDateTime": 1614553984214,
+  "failureReason": {
+    "Error": "Exception",
+    "Cause": "{\"errorMessage\": \"Validation failure : {'2020-06-26': {'mismatches': [], 'missing': [], 'additional': [{'name': 'Premium15-Italy-PN', 'value': '6.00'}]}}\", \"errorType\": \"Exception\", \"stackTrace\": [[\"/var/task/ExecutionEngineLambda/lambdas/edd_validation_test_steps.py\", 38, \"pay_data_edd_validation_v2\", \"raise error\"], [\"/var/task/ExecutionEngineLambda/lambdas/edd_validation_test_steps.py\", 34, \"pay_data_edd_validation_v2\", \"edd_validation_helper.validate_pay_codes_from_edd(test_data, edd_version=\\\"v2\\\")\"], [\"/var/task/ExecutionEngineLambda/lambdas/helpers/edd_validation_helper.py\", 204, \"validate_pay_codes_from_edd\", \"raise Exception(f\\\"Validation failure : {all_results}\\\")\"]]}"
+  },
+  "description": "RestDay test",
+  "retries": 1,
+  "failureException": "Exception",
+  "testType": null,
+  "ttl": 1617145983,
+  "employee_id": "500006752",
+  "population_group": "Agency_Part_Time_Hourly_TRD-ITALY-PN",
+  "start_date": "2020-06-26",
+  "end_date": "2020-06-26",
+  "errorMessage": "Validation failure : {'2020-06-26': {'mismatches': [], 'missing': [], 'additional': [{'name': 'Premium15-Italy-PN', 'value': '6.00'}]}}",
+  "taapi_request_id, url and PPE_EVAL_STATUS": "18c7141b-9556-4fdb-8eac-2099fe87b8ab,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752?expand=profiles%252Cattributes,None\\n4c60de60-68c9-4e9f-817b-7d866c067344,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752?expand=profiles%252Cattributes,None\\nb9c144d0-a275-40c8-a665-4c62d583605d,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752?expand=profiles%252Cattributes,None\\n892301f6-20a9-4290-b39a-58cbad522bd7,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\na3e54316-a9db-4c3a-a7af-53de21c0f953,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/punches,None\\nc2bbcb26-45fd-47b9-8729-f549ea29f37b,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-06-25T22%253A00%253A00Z&endDateTime=2020-06-26T21%253A59%253A59Z&employeeId=500006752,None\\n52ac88df-4332-4a9d-a705-f325992b177e,https://beta.api.time-attendance.a2z.com/v4/shifts/WES-ecbbf527-74cf-0a63-7f6c-ad295d4d14f2,None\\n525a7371-2b38-42d2-9866-73b612b16955,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-06-25T22%253A00%253A00Z&endDateTime=2020-06-26T21%253A59%253A59Z&employeeId=500006752,None\\n1eb9d963-f613-4232-a7f4-1908b34d386a,https://beta.api.time-attendance.a2z.com/v1/time-off/requests?subjectId=500006752&startDateTime=2020-06-25T22%253A00%253A00Z&endDateTime=2020-06-26T21%253A59%253A00Z,None\\n89ebffb5-721d-4501-bcd0-99e6eb2f13aa,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_PENDING\\n6ee1c20f-eea9-4a50-b98e-0baac8dcc77e,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_PENDING\\nf23b7029-ef69-43dd-bacd-be74dfaed913,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_PENDING\\n2740404f-efeb-4fa0-9f3d-1424be881783,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n0938b50a-5141-4fef-8138-5152072869f8,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n2d9bc0fc-36c7-4ca7-9440-9d18ebb3fd7a,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n7af69edd-a620-4b08-a0ee-4520ed929c97,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=timeOffData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\nd6eb5779-7896-44b5-8cd3-4d4c3fa39f89,https://beta.api.time-attendance.a2z.com/v4/shifts,None\\n54f3a4fd-82ac-4b92-af3a-008ac66d3a15,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/punches,None\\nc8dba51a-f008-4371-8310-fea04533979c,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n125a0e8b-0d49-4cc0-b028-9062b89b5d98,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=timeOffData&documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n5b120e17-fa90-44da-abe2-3416449797f7,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=anomalyData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n78339dce-66b0-432e-bace-31c6874fe13d,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=observedData&documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n84a4840a-dbd9-4741-ae54-e21a6a7a24fe,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=consolidatedPayData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n",
+  "flow_of_control": "ExecutionEngineLambda-PantherCo-initializeTestData-1XJG83CBYRKG9\\nExecutionEngineLambda-Panth-clearAllEmployeeDataV2-IYPDZQKMVHP9\\nExecutionEngineLambda-PunchToPayStack-createShifts-Z6SL5SJOYCOT\\nExecutionEngineLambda-Pan-createTimeoffsWithSegmen-1JURHZR7H948G\\nExecutionEngineLambda-PunchToPaySt-createPunchesv2-T54M09DF04JA\\nExecutionEngineLambda-PantherC-validateShiftsEDDv2-1U3NKQQSPL79B\\nExecutionEngineLambda-Panther-validateTimeOffEDDv2-LYRH9YV4X1NF\\nExecutionEngineLambda-Panth-validateAnomaliesEDDv2-8DW6QJ564STN\\nExecutionEngineLambda-PantherComm-validateTaskList-1R87XPQUOJ5FI\\nExecutionEngineLambda-Panther-validatePunchesEDDv2-MMXGQBLSFBE7\\nExecutionEngineLambda-Panther-validatePayDataEDDv2-1JB94GK0SLDC\\n",
+  "anomalies": "undefined\\n"
+}
+{
+  "requestId": "71a047a2-9f41-42f2-922e-0f9deb47dc83",
+  "testId": "3",
+  "name": "3",
+  "testData": {
+    "id": "3",
+    "description": "TimeOff test ",
+    "usecase_runconfig": {
+      "start_date": "2020-05-23",
+      "end_date": "2020-05-23",
+      "is_holiday": false,
+      "employee": {
+        "id": "500006742",
+        "group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
+        "powerUIPopulationGroup": "IT_PN_AmazonPartTimeHourly"
+      }
+    },
+    "days": [
+      {
+        "day": "2020-05-23",
+        "shifts": [
+          {
+            "shift_id": "1",
+            "intervals": [
+              {
+                "interval_id": "1",
+                "interval_type": "Regular Strict",
+                "start_time": "2020-05-23T09:00:00Z",
+                "end_time": "2020-05-23T17:00:00Z",
+                "pay_modifier": [],
+                "duration_in_minutes": "",
+                "interval_types": "Regular Strict",
+                "schema": {
+                  "name": "Fixed_Interval",
+                  "version": "1"
+                },
+                "isPunchExpected": true,
+                "isBreak": false,
+                "isWork": true
+              }
+            ]
+          }
+        ],
+        "punches": [],
+        "timeoffs": [
+          {
+            "start_time": "2020-05-23T09:00:00Z",
+            "end_time": "2020-05-23T17:00:00Z",
+            "timeoff_type": "TimeOff_ITA_PN_Bereavement",
+            "requestor_id": "104778519",
+            "segment_group": "FULL_SHIFT",
+            "timeoff_dates": [],
+            "shift_interval_id": null
+          }
+        ],
+        "policies": [
+          {
+            "name": "MealVoucher-Italy-PN",
+            "value": "0",
+            "shift_interval_id": "1_1"
+          },
+          {
+            "name": "Bereavement-Italy-PN",
+            "value": "8",
+            "shift_interval_id": "1_1"
+          }
+        ],
+        "anomalies": [],
+        "infractions": []
+      }
+    ],
+    "location": {
+      "region": "ITA",
+      "lineOfBusiness": "PN",
+      "site": "UIT1",
+      "siteIdV2": "1945",
+      "timeZone": "Europe/Amsterdam"
+    },
+    "finishExecution": false
+  },
+  "status": "FAILED",
+  "logsLink": "https://console.aws.amazon.com/states/home?region=us-west-2#/executions/details/arn:aws:states:us-west-2:774139607587:execution:PunchToPayWorkflowV2-tzOmvQo3Zx4D:262243d3-e10e-4149-91d3-0254f86f90b3",
+  "startDateTime": 1614553991840,
+  "lastUpdatedDateTime": 1614553984214,
+  "failureReason": {
+    "Error": "TaapiApiCallFailed",
+    "Cause": "{\"errorMessage\": \"Response Code : 403, Message : {\\\"message\\\": \\\"NotAuthorized\\\"}, Headers: {'Content-Type': 'application/json', 'Content-Length': '28', 'Connection': 'keep-alive', 'Date': 'Sun, 28 Feb 2021 23:25:09 GMT', 'x-amzn-RequestId': '480f6892-cee3-431c-835b-e06dbee9b285', 'x-amzn-Remapped-x-amzn-RequestId': 'd12e1e4f-fff0-4fd8-bc6e-7cde50480c61', 'X-XSS-Protection': '1', 'taapi-userid': 'WorkEventsQA', 'Strict-Transport-Security': 'max-age=47474747', 'x-amzn-Remapped-Content-Length': '28', 'X-Frame-Options': 'DENY', 'taapi-requestid': '480f6892-cee3-431c-835b-e06dbee9b285', 'Content-Security-Policy': \\\"default-src 'none';\\\", 'x-amz-apigw-id': 'bers2HtXPHcFX3g=', 'X-Content-Type-Options': 'nosniff', 'taapi-routing-info': '{\\\"serviceName\\\":\\\"TimeBankEmployeeAdapter\\\",\\\"endpoint\\\":\\\"https://a8vds2qwrg.execute-api.us-west-2.amazonaws.com\\\",\\\"cti\\\":{\\\"category\\\":\\\"HRIS - HR Systems\\\",\\\"type\\\":\\\"Time Bank\\\",\\\"item\\\":\\\"Development\\\"},\\\"contact\\\":{\\\"name\\\":\\\"TimeBank\\\",\\\"url\\\":\\\"https://w.amazon.com/bin/view/TimeBank/\\\",\\\"email\\\":\\\"timebank@amazon.com\\\"}}', 'x-amzn-Remapped-Date': 'Sun, 28 Feb 2021 23:25:09 GMT', 'X-Cache': 'Error from cloudfront', 'Via': '1.1 cd48ffda04934d18865e47e99ea080bc.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HIO50-C1', 'X-Amz-Cf-Id': 'c74_LS8c11Qxpr4qvSWP8s1uXtXD11S1wxNiDDouWdmrilmXmBWurQ=='}\", \"errorType\": \"TaapiApiCallFailed\", \"stackTrace\": [[\"/var/task/ExecutionEngineLambda/lambdas/timeoff_test_steps.py\", 21, \"create_timeoffs_v2_with_segments\", \"raise e\"], [\"/var/task/ExecutionEngineLambda/lambdas/timeoff_test_steps.py\", 18, \"create_timeoffs_v2_with_segments\", \"create_timeoffs(test_data=test_data)\"], [\"/var/task/ExecutionEngineLambda/lambdas/helpers/timeoff_suite_helper.py\", 118, \"create_timeoffs\", \"validate_timeoff_payload(timeoff)\"], [\"/var/task/ExecutionEngineLambda/lambdas/helpers/timeoff_suite_helper.py\", 24, \"validate_timeoff_payload\", \"validate_payload=True)\"], [\"/var/task/taa_test_core/core/common_services/timeoff_utils.py\", 45, \"create_timeoff_or_validate_timeoff_payload\", \"taapi_error_handler(response)\"], [\"/var/task/taa_test_core/exceptions_handler/handlers.py\", 9, \"taapi_error_handler\", \"raise TaapiApiCallFailed(cause)\"]]}"
+  },
+  "description": "TimeOff test ",
+  "retries": 1,
+  "failureException": "TaapiApiCallFailed",
+  "testType": null,
+  "ttl": 1617145983,
+  "employee_id": "500006742",
+  "population_group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
+  "start_date": "2020-05-23",
+  "end_date": "2020-05-23",
+  "errorMessage": "Response Code : 403, Message : {\"message\": \"NotAuthorized\"}, Headers: {'Content-Type': 'application/json', 'Content-Length': '28', 'Connection': 'keep-alive', 'Date': 'Sun, 28 Feb 2021 23:25:09 GMT', 'x-amzn-RequestId': '480f6892-cee3-431c-835b-e06dbee9b285', 'x-amzn-Remapped-x-amzn-RequestId': 'd12e1e4f-fff0-4fd8-bc6e-7cde50480c61', 'X-XSS-Protection': '1', 'taapi-userid': 'WorkEventsQA', 'Strict-Transport-Security': 'max-age=47474747', 'x-amzn-Remapped-Content-Length': '28', 'X-Frame-Options': 'DENY', 'taapi-requestid': '480f6892-cee3-431c-835b-e06dbee9b285', 'Content-Security-Policy': \"default-src 'none';\", 'x-amz-apigw-id': 'bers2HtXPHcFX3g=', 'X-Content-Type-Options': 'nosniff', 'taapi-routing-info': '{\"serviceName\":\"TimeBankEmployeeAdapter\",\"endpoint\":\"https://a8vds2qwrg.execute-api.us-west-2.amazonaws.com\",\"cti\":{\"category\":\"HRIS - HR Systems\",\"type\":\"Time Bank\",\"item\":\"Development\"},\"contact\":{\"name\":\"TimeBank\",\"url\":\"https://w.amazon.com/bin/view/TimeBank/\",\"email\":\"timebank@amazon.com\"}}', 'x-amzn-Remapped-Date': 'Sun, 28 Feb 2021 23:25:09 GMT', 'X-Cache': 'Error from cloudfront', 'Via': '1.1 cd48ffda04934d18865e47e99ea080bc.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HIO50-C1', 'X-Amz-Cf-Id': 'c74_LS8c11Qxpr4qvSWP8s1uXtXD11S1wxNiDDouWdmrilmXmBWurQ=='}",
+  "taapi_request_id, url and PPE_EVAL_STATUS": "399cbd5f-aff3-4a61-99bc-021c57f8fcc2,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742?expand=profiles%252Cattributes,None\\n621d88be-7712-4b69-8ac2-7793a8c80561,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742?expand=profiles%252Cattributes,None\\n212092be-b7f7-41f0-9f3f-123753355c6a,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742?expand=profiles%252Cattributes,None\\na5fd6d2d-4daf-4676-b93e-d5c99cbbdfd6,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-05-23&endDate=2020-05-23,PPE_EVAL_COMPLETED\\n3a453f33-244d-412c-85e9-9812739f2483,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-05-22T22%253A00%253A00Z&endDateTime=2020-05-23T21%253A59%253A59Z&employeeId=500006742,None\\nbdda91e0-734c-46a7-9901-11ca1b5b7a09,https://beta.api.time-attendance.a2z.com/v4/shifts/WES-6ebbf527-6a53-35f3-365c-e3e0e9f77a5f,None\\n93f2ac08-016f-46e8-8be1-19f19846cb67,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-05-22T22%253A00%253A00Z&endDateTime=2020-05-23T21%253A59%253A59Z&employeeId=500006742,None\\n935c4900-379b-45e6-bfc3-d5d1afcea57f,https://beta.api.time-attendance.a2z.com/v1/time-off/requests?subjectId=500006742&startDateTime=2020-05-22T22%253A00%253A00Z&endDateTime=2020-05-23T21%253A59%253A00Z,None\\n13d1443e-90d6-4a9b-899d-bfaf2d597370,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742/edds?documentKey=scheduleData&startDate=2020-05-23&endDate=2020-05-23,PPE_EVAL_COMPLETED\\n4dc40059-6e27-4172-9fd3-612f8f6b1872,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742/edds?documentKey=scheduleData&startDate=2020-05-23&endDate=2020-05-23,PPE_EVAL_COMPLETED\\nbcc67500-43f0-4711-b3d3-1b1912611d69,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742/edds?documentKey=timeOffData&startDate=2020-05-23&endDate=2020-05-23,PPE_EVAL_COMPLETED\\n14353214-656c-4bac-8ecd-8fb3f8ff4a39,https://beta.api.time-attendance.a2z.com/v4/shifts,None\\n480f6892-cee3-431c-835b-e06dbee9b285,https://beta.api.time-attendance.a2z.com/v1/time-off/requests/preview,None\\n",
+  "flow_of_control": "ExecutionEngineLambda-PantherCo-initializeTestData-1XJG83CBYRKG9\\nExecutionEngineLambda-Panth-clearAllEmployeeDataV2-IYPDZQKMVHP9\\nExecutionEngineLambda-PunchToPayStack-createShifts-Z6SL5SJOYCOT\\nExecutionEngineLambda-Pan-createTimeoffsWithSegmen-1JURHZR7H948G\\n",
+  "anomalies": "undefined\\n"
+}
+{
+  "requestId": "71a047a2-9f41-42f2-922e-0f9deb47dc83",
+  "testId": "4",
+  "name": "4",
+  "testData": {
+    "id": "4",
+    "description": "Day Shift - Scheduled - Strict - Worked during shift time",
+    "usecase_runconfig": {
+      "start_date": "2020-06-29",
+      "end_date": "2020-06-29",
+      "is_holiday": false,
+      "employee": {
+        "id": "500006740",
+        "group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
+        "powerUIPopulationGroup": "IT_PN_AmazonPartTimeHourly"
+      }
+    },
+    "days": [
+      {
+        "day": "2020-06-29",
+        "shifts": [
+          {
+            "shift_id": "1",
+            "intervals": [
+              {
+                "interval_id": "1",
+                "interval_type": "Regular Strict",
+                "start_time": "2020-06-29T08:00:00Z",
+                "end_time": "2020-06-29T12:00:00Z",
+                "pay_modifier": [],
+                "duration_in_minutes": "",
+                "interval_types": "Regular Strict",
+                "schema": {
+                  "name": "Fixed_Interval",
+                  "version": "1"
+                },
+                "isPunchExpected": true,
+                "isBreak": false,
+                "isWork": true
+              }
+            ]
+          }
+        ],
+        "punches": [
+          {
+            "timestamp": "2020-06-29T08:00:00Z",
+            "inouthint": "in"
+          },
+          {
+            "timestamp": "2020-06-29T12:00:00Z",
+            "inouthint": "out"
+          }
+        ],
+        "timeoffs": [],
+        "policies": [
+          {
+            "name": "RegularHours-Italy-PN",
+            "value": "4",
+            "shift_interval_id": "1_1"
+          },
+          {
+            "name": "MealVoucher-Italy-PN",
+            "value": "0",
+            "shift_interval_id": "1_1"
+          }
+        ],
+        "anomalies": [],
+        "infractions": []
+      }
+    ],
+    "location": {
+      "region": "ITA",
+      "lineOfBusiness": "PN",
+      "site": "UIT4",
+      "siteIdV2": "1944",
+      "timeZone": "Europe/Amsterdam"
+    },
+    "finishExecution": false
+  },
+  "status": "FAILED",
+  "logsLink": "https://console.aws.amazon.com/states/home?region=us-west-2#/executions/details/arn:aws:states:us-west-2:774139607587:execution:PunchToPayWorkflowV2-tzOmvQo3Zx4D:5e427ebe-f1a7-417b-ab40-54fe3537cfb8",
+  "startDateTime": 1614553993182,
+  "lastUpdatedDateTime": 1614553984214,
+  "failureReason": {
+    "Error": "Exception",
+    "Cause": "{\"errorMessage\": \"Validation failure : {'2020-06-29': {'mismatches': [], 'missing': [], 'additional': [{'name': 'Holiday-Italy-PN', 'value': 'Holiday'}, {'name': 'Premium30-Italy-PN', 'value': '4.00'}]}}\", \"errorType\": \"Exception\", \"stackTrace\": [[\"/var/task/ExecutionEngineLambda/lambdas/edd_validation_test_steps.py\", 38, \"pay_data_edd_validation_v2\", \"raise error\"], [\"/var/task/ExecutionEngineLambda/lambdas/edd_validation_test_steps.py\", 34, \"pay_data_edd_validation_v2\", \"edd_validation_helper.validate_pay_codes_from_edd(test_data, edd_version=\\\"v2\\\")\"], [\"/var/task/ExecutionEngineLambda/lambdas/helpers/edd_validation_helper.py\", 204, \"validate_pay_codes_from_edd\", \"raise Exception(f\\\"Validation failure : {all_results}\\\")\"]]}"
+  },
+  "description": "Day Shift - Scheduled - Strict - Worked during shift time",
+  "retries": 1,
+  "failureException": "Exception",
+  "testType": null,
+  "ttl": 1617145983,
+  "employee_id": "500006740",
+  "population_group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
+  "start_date": "2020-06-29",
+  "end_date": "2020-06-29",
+  "errorMessage": "Validation failure : {'2020-06-29': {'mismatches': [], 'missing': [], 'additional': [{'name': 'Holiday-Italy-PN', 'value': 'Holiday'}, {'name': 'Premium30-Italy-PN', 'value': '4.00'}]}}",
+  "taapi_request_id, url and PPE_EVAL_STATUS": "65c63c91-8837-4d88-b448-e2a03bab0119,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740?expand=profiles%252Cattributes,None\\na6585fbd-aa42-460b-813d-ef25d3b089ca,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740?expand=profiles%252Cattributes,None\\n2ddfdc78-e04d-4d5f-8293-7dcd079ba227,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740?expand=profiles%252Cattributes,None\\nd4d497d5-990c-4619-941b-226d5b6f1658,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n377fec21-77be-4e32-a8d8-7ed82703bfb1,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/punches,None\\nbf08d886-050f-4c5d-b413-685a3598c313,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-06-28T22%253A00%253A00Z&endDateTime=2020-06-29T21%253A59%253A59Z&employeeId=500006740,None\\n0b74f21b-46bb-4b52-8862-21d27152591a,https://beta.api.time-attendance.a2z.com/v4/shifts/WES-e4bbf526-0742-e0a3-1744-615d1b801611,None\\n6ad472b4-5a8e-45ce-90a4-16f378a5f51c,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-06-28T22%253A00%253A00Z&endDateTime=2020-06-29T21%253A59%253A59Z&employeeId=500006740,None\\n5eaace39-351a-4d90-835f-09f57f0e57f1,https://beta.api.time-attendance.a2z.com/v1/time-off/requests?subjectId=500006740&startDateTime=2020-06-28T22%253A00%253A00Z&endDateTime=2020-06-29T21%253A59%253A00Z,None\\n2c50a4f2-6d63-4794-8b19-97076861cdec,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n0eba27c2-0329-44bd-8abc-51c341f71da9,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n94246915-2ee1-49ff-96bc-018456019e3e,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\nef80c32c-689b-4e9a-b317-e6fc2c824f70,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/edds?documentKey=timeOffData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n330133ea-e9c7-44bf-a567-62d78ea94bb8,https://beta.api.time-attendance.a2z.com/v4/shifts,None\\nf1d11521-f62f-4e38-b8d3-82574dc00086,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006740/punches,None\\nfab1d2c4-0f13-4057-b544-655df5185b07,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n381d1d1d-c133-44e9-b1e0-c63da7111d3d,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=timeOffData&documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n10e90309-3bb2-40cc-a8a5-4c3afc9b87fd,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=anomalyData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n53ae55c2-4664-4cfa-8b68-0fb74e2a342a,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=observedData&documentKey=scheduleData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\nd732f0af-cf02-4ebf-a0fb-ba313ff23217,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006740/edds?documentKey=consolidatedPayData&startDate=2020-06-29&endDate=2020-06-29,PPE_EVAL_COMPLETED\\n",
+  "flow_of_control": "ExecutionEngineLambda-PantherCo-initializeTestData-1XJG83CBYRKG9\\nExecutionEngineLambda-Panth-clearAllEmployeeDataV2-IYPDZQKMVHP9\\nExecutionEngineLambda-PunchToPayStack-createShifts-Z6SL5SJOYCOT\\nExecutionEngineLambda-Pan-createTimeoffsWithSegmen-1JURHZR7H948G\\nExecutionEngineLambda-PunchToPaySt-createPunchesv2-T54M09DF04JA\\nExecutionEngineLambda-PantherC-validateShiftsEDDv2-1U3NKQQSPL79B\\nExecutionEngineLambda-Panther-validateTimeOffEDDv2-LYRH9YV4X1NF\\nExecutionEngineLambda-Panth-validateAnomaliesEDDv2-8DW6QJ564STN\\nExecutionEngineLambda-PantherComm-validateTaskList-1R87XPQUOJ5FI\\nExecutionEngineLambda-Panther-validatePunchesEDDv2-MMXGQBLSFBE7\\nExecutionEngineLambda-Panther-validatePayDataEDDv2-1JB94GK0SLDC\\n",
+  "anomalies": "undefined\\n"
+}
+{
+  "requestId": "71a047a2-9f41-42f2-922e-0f9deb47dc83",
+  "testId": "5",
+  "name": "5",
+  "testData": {
+    "id": "5",
+    "description": "RestDay test",
+    "usecase_runconfig": {
+      "start_date": "2020-06-26",
+      "end_date": "2020-06-26",
+      "is_holiday": false,
+      "employee": {
+        "id": "500006752",
+        "group": "Agency_Part_Time_Hourly_TRD-ITALY-PN",
+        "powerUIPopulationGroup": "IT_PN_AgencyPartTimeHourly"
+      }
+    },
+    "days": [
+      {
+        "day": "2020-06-26",
+        "shifts": [
+          {
+            "shift_id": "1",
+            "intervals": [
+              {
+                "interval_id": "1",
+                "interval_type": "Regular Strict",
+                "start_time": "2020-06-26T22:00:00Z",
+                "end_time": "2020-06-27T04:00:00Z",
+                "pay_modifier": [
+                  {
+                    "schema": {
+                      "name": "DualAttributeSchema",
+                      "version": "1"
+                    },
+                    "payModifierName": "Rest Day",
+                    "variable": "1"
+                  }
+                ],
+                "duration_in_minutes": "",
+                "interval_types": "Regular Strict",
+                "schema": {
+                  "name": "Fixed_Interval",
+                  "version": "1"
+                },
+                "isPunchExpected": true,
+                "isBreak": false,
+                "isWork": true
+              }
+            ]
+          }
+        ],
+        "punches": [
+          {
+            "timestamp": "2020-06-26T22:00:00Z",
+            "inouthint": "in"
+          },
+          {
+            "timestamp": "2020-06-27T04:00:00Z",
+            "inouthint": "out"
+          }
+        ],
+        "timeoffs": [],
+        "policies": [
+          {
+            "name": "SupplimentaryHours35-Italy-PN",
+            "value": "6",
+            "shift_interval_id": "1_1"
+          },
+          {
+            "name": "MealVoucher-Italy-PN",
+            "value": "1",
+            "shift_interval_id": "1_1"
+          }
+        ],
+        "anomalies": [],
+        "infractions": []
+      }
+    ],
+    "location": {
+      "region": "ITA",
+      "lineOfBusiness": "PN",
+      "site": "UIT4",
+      "siteIdV2": "1944",
+      "timeZone": "Europe/Amsterdam"
+    },
+    "finishExecution": false
+  },
+  "status": "FAILED",
+  "logsLink": "https://console.aws.amazon.com/states/home?region=us-west-2#/executions/details/arn:aws:states:us-west-2:774139607587:execution:PunchToPayWorkflowV2-tzOmvQo3Zx4D:11497c85-b48c-4e7f-a3c0-07409aba3987",
+  "startDateTime": 1614553993272,
+  "lastUpdatedDateTime": 1614553984214,
+  "failureReason": {
+    "Error": "Exception",
+    "Cause": "{\"errorMessage\": \"Validation failure : {'2020-06-26': {'mismatches': [], 'missing': [], 'additional': [{'name': 'Premium15-Italy-PN', 'value': '6.00'}]}}\", \"errorType\": \"Exception\", \"stackTrace\": [[\"/var/task/ExecutionEngineLambda/lambdas/edd_validation_test_steps.py\", 38, \"pay_data_edd_validation_v2\", \"raise error\"], [\"/var/task/ExecutionEngineLambda/lambdas/edd_validation_test_steps.py\", 34, \"pay_data_edd_validation_v2\", \"edd_validation_helper.validate_pay_codes_from_edd(test_data, edd_version=\\\"v2\\\")\"], [\"/var/task/ExecutionEngineLambda/lambdas/helpers/edd_validation_helper.py\", 204, \"validate_pay_codes_from_edd\", \"raise Exception(f\\\"Validation failure : {all_results}\\\")\"]]}"
+  },
+  "description": "RestDay test",
+  "retries": 1,
+  "failureException": "Exception",
+  "testType": null,
+  "ttl": 1617145983,
+  "employee_id": "500006752",
+  "population_group": "Agency_Part_Time_Hourly_TRD-ITALY-PN",
+  "start_date": "2020-06-26",
+  "end_date": "2020-06-26",
+  "errorMessage": "Validation failure : {'2020-06-26': {'mismatches': [], 'missing': [], 'additional': [{'name': 'Premium15-Italy-PN', 'value': '6.00'}]}}",
+  "taapi_request_id, url and PPE_EVAL_STATUS": "18c7141b-9556-4fdb-8eac-2099fe87b8ab,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752?expand=profiles%252Cattributes,None\\n4c60de60-68c9-4e9f-817b-7d866c067344,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752?expand=profiles%252Cattributes,None\\nb9c144d0-a275-40c8-a665-4c62d583605d,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752?expand=profiles%252Cattributes,None\\n892301f6-20a9-4290-b39a-58cbad522bd7,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\na3e54316-a9db-4c3a-a7af-53de21c0f953,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/punches,None\\nc2bbcb26-45fd-47b9-8729-f549ea29f37b,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-06-25T22%253A00%253A00Z&endDateTime=2020-06-26T21%253A59%253A59Z&employeeId=500006752,None\\n52ac88df-4332-4a9d-a705-f325992b177e,https://beta.api.time-attendance.a2z.com/v4/shifts/WES-ecbbf527-74cf-0a63-7f6c-ad295d4d14f2,None\\n525a7371-2b38-42d2-9866-73b612b16955,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-06-25T22%253A00%253A00Z&endDateTime=2020-06-26T21%253A59%253A59Z&employeeId=500006752,None\\n1eb9d963-f613-4232-a7f4-1908b34d386a,https://beta.api.time-attendance.a2z.com/v1/time-off/requests?subjectId=500006752&startDateTime=2020-06-25T22%253A00%253A00Z&endDateTime=2020-06-26T21%253A59%253A00Z,None\\n89ebffb5-721d-4501-bcd0-99e6eb2f13aa,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_PENDING\\n6ee1c20f-eea9-4a50-b98e-0baac8dcc77e,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_PENDING\\nf23b7029-ef69-43dd-bacd-be74dfaed913,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_PENDING\\n2740404f-efeb-4fa0-9f3d-1424be881783,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n0938b50a-5141-4fef-8138-5152072869f8,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n2d9bc0fc-36c7-4ca7-9440-9d18ebb3fd7a,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n7af69edd-a620-4b08-a0ee-4520ed929c97,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/edds?documentKey=timeOffData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\nd6eb5779-7896-44b5-8cd3-4d4c3fa39f89,https://beta.api.time-attendance.a2z.com/v4/shifts,None\\n54f3a4fd-82ac-4b92-af3a-008ac66d3a15,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006752/punches,None\\nc8dba51a-f008-4371-8310-fea04533979c,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n125a0e8b-0d49-4cc0-b028-9062b89b5d98,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=timeOffData&documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n5b120e17-fa90-44da-abe2-3416449797f7,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=anomalyData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n78339dce-66b0-432e-bace-31c6874fe13d,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=observedData&documentKey=scheduleData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n84a4840a-dbd9-4741-ae54-e21a6a7a24fe,https://beta.api.time-attendance.a2z.com/v2/employees/employeeid:500006752/edds?documentKey=consolidatedPayData&startDate=2020-06-26&endDate=2020-06-26,PPE_EVAL_COMPLETED\\n",
+  "flow_of_control": "ExecutionEngineLambda-PantherCo-initializeTestData-1XJG83CBYRKG9\\nExecutionEngineLambda-Panth-clearAllEmployeeDataV2-IYPDZQKMVHP9\\nExecutionEngineLambda-PunchToPayStack-createShifts-Z6SL5SJOYCOT\\nExecutionEngineLambda-Pan-createTimeoffsWithSegmen-1JURHZR7H948G\\nExecutionEngineLambda-PunchToPaySt-createPunchesv2-T54M09DF04JA\\nExecutionEngineLambda-PantherC-validateShiftsEDDv2-1U3NKQQSPL79B\\nExecutionEngineLambda-Panther-validateTimeOffEDDv2-LYRH9YV4X1NF\\nExecutionEngineLambda-Panth-validateAnomaliesEDDv2-8DW6QJ564STN\\nExecutionEngineLambda-PantherComm-validateTaskList-1R87XPQUOJ5FI\\nExecutionEngineLambda-Panther-validatePunchesEDDv2-MMXGQBLSFBE7\\nExecutionEngineLambda-Panther-validatePayDataEDDv2-1JB94GK0SLDC\\n",
+  "anomalies": "undefined\\n"
+}
+{
+  "requestId": "71a047a2-9f41-42f2-922e-0f9deb47dc83",
+  "testId": "33",
+  "name": "33",
+  "testData": {
+    "id": "33",
+    "description": "TimeOff test ",
+    "usecase_runconfig": {
+      "start_date": "2020-05-23",
+      "end_date": "2020-05-23",
+      "is_holiday": false,
+      "employee": {
+        "id": "500006742",
+        "group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
+        "powerUIPopulationGroup": "IT_PN_AmazonPartTimeHourly"
+      }
+    },
+    "days": [
+      {
+        "day": "2020-05-23",
+        "shifts": [
+          {
+            "shift_id": "1",
+            "intervals": [
+              {
+                "interval_id": "1",
+                "interval_type": "Regular Strict",
+                "start_time": "2020-05-23T09:00:00Z",
+                "end_time": "2020-05-23T17:00:00Z",
+                "pay_modifier": [],
+                "duration_in_minutes": "",
+                "interval_types": "Regular Strict",
+                "schema": {
+                  "name": "Fixed_Interval",
+                  "version": "1"
+                },
+                "isPunchExpected": true,
+                "isBreak": false,
+                "isWork": true
+              }
+            ]
+          }
+        ],
+        "punches": [],
+        "timeoffs": [
+          {
+            "start_time": "2020-05-23T09:00:00Z",
+            "end_time": "2020-05-23T17:00:00Z",
+            "timeoff_type": "TimeOff_ITA_PN_Bereavement",
+            "requestor_id": "104778519",
+            "segment_group": "FULL_SHIFT",
+            "timeoff_dates": [],
+            "shift_interval_id": null
+          }
+        ],
+        "policies": [
+          {
+            "name": "MealVoucher-Italy-PN",
+            "value": "0",
+            "shift_interval_id": "1_1"
+          },
+          {
+            "name": "Bereavement-Italy-PN",
+            "value": "8",
+            "shift_interval_id": "1_1"
+          }
+        ],
+        "anomalies": [],
+        "infractions": []
+      }
+    ],
+    "location": {
+      "region": "ITA",
+      "lineOfBusiness": "PN",
+      "site": "UIT1",
+      "siteIdV2": "1945",
+      "timeZone": "Europe/Amsterdam"
+    },
+    "finishExecution": false
+  },
+  "status": "FAILED",
+  "logsLink": "https://console.aws.amazon.com/states/home?region=us-west-2#/executions/details/arn:aws:states:us-west-2:774139607587:execution:PunchToPayWorkflowV2-tzOmvQo3Zx4D:262243d3-e10e-4149-91d3-0254f86f90b3",
+  "startDateTime": 1614553991840,
+  "lastUpdatedDateTime": 1614553984214,
+  "failureReason": {
+    "Error": "TaapiApiCallFailed",
+    "Cause": "{\"errorMessage\": \"Response Code : 403, Message : {\\\"message\\\": \\\"NotAuthorized\\\"}, Headers: {'Content-Type': 'application/json', 'Content-Length': '28', 'Connection': 'keep-alive', 'Date': 'Sun, 28 Feb 2021 23:25:09 GMT', 'x-amzn-RequestId': '480f6892-cee3-431c-835b-e06dbee9b285', 'x-amzn-Remapped-x-amzn-RequestId': 'd12e1e4f-fff0-4fd8-bc6e-7cde50480c61', 'X-XSS-Protection': '1', 'taapi-userid': 'WorkEventsQA', 'Strict-Transport-Security': 'max-age=47474747', 'x-amzn-Remapped-Content-Length': '28', 'X-Frame-Options': 'DENY', 'taapi-requestid': '480f6892-cee3-431c-835b-e06dbee9b285', 'Content-Security-Policy': \\\"default-src 'none';\\\", 'x-amz-apigw-id': 'bers2HtXPHcFX3g=', 'X-Content-Type-Options': 'nosniff', 'taapi-routing-info': '{\\\"serviceName\\\":\\\"TimeBankEmployeeAdapter\\\",\\\"endpoint\\\":\\\"https://a8vds2qwrg.execute-api.us-west-2.amazonaws.com\\\",\\\"cti\\\":{\\\"category\\\":\\\"HRIS - HR Systems\\\",\\\"type\\\":\\\"Time Bank\\\",\\\"item\\\":\\\"Development\\\"},\\\"contact\\\":{\\\"name\\\":\\\"TimeBank\\\",\\\"url\\\":\\\"https://w.amazon.com/bin/view/TimeBank/\\\",\\\"email\\\":\\\"timebank@amazon.com\\\"}}', 'x-amzn-Remapped-Date': 'Sun, 28 Feb 2021 23:25:09 GMT', 'X-Cache': 'Error from cloudfront', 'Via': '1.1 cd48ffda04934d18865e47e99ea080bc.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HIO50-C1', 'X-Amz-Cf-Id': 'c74_LS8c11Qxpr4qvSWP8s1uXtXD11S1wxNiDDouWdmrilmXmBWurQ=='}\", \"errorType\": \"TaapiApiCallFailed\", \"stackTrace\": [[\"/var/task/ExecutionEngineLambda/lambdas/timeoff_test_steps.py\", 21, \"create_timeoffs_v2_with_segments\", \"raise e\"], [\"/var/task/ExecutionEngineLambda/lambdas/timeoff_test_steps.py\", 18, \"create_timeoffs_v2_with_segments\", \"create_timeoffs(test_data=test_data)\"], [\"/var/task/ExecutionEngineLambda/lambdas/helpers/timeoff_suite_helper.py\", 118, \"create_timeoffs\", \"validate_timeoff_payload(timeoff)\"], [\"/var/task/ExecutionEngineLambda/lambdas/helpers/timeoff_suite_helper.py\", 24, \"validate_timeoff_payload\", \"validate_payload=True)\"], [\"/var/task/taa_test_core/core/common_services/timeoff_utils.py\", 45, \"create_timeoff_or_validate_timeoff_payload\", \"taapi_error_handler(response)\"], [\"/var/task/taa_test_core/exceptions_handler/handlers.py\", 9, \"taapi_error_handler\", \"raise TaapiApiCallFailed(cause)\"]]}"
+  },
+  "description": "TimeOff test ",
+  "retries": 1,
+  "failureException": "TaapiApiCallFailed",
+  "testType": null,
+  "ttl": 1617145983,
+  "employee_id": "500006742",
+  "population_group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
+  "start_date": "2020-05-23",
+  "end_date": "2020-05-23",
+  "errorMessage": "Response Code : 403, Message : {\"message\": \"NotAuthorized\"}, Headers: {'Content-Type': 'application/json', 'Content-Length': '28', 'Connection': 'keep-alive', 'Date': 'Sun, 28 Feb 2021 23:25:09 GMT', 'x-amzn-RequestId': '480f6892-cee3-431c-835b-e06dbee9b285', 'x-amzn-Remapped-x-amzn-RequestId': 'd12e1e4f-fff0-4fd8-bc6e-7cde50480c61', 'X-XSS-Protection': '1', 'taapi-userid': 'WorkEventsQA', 'Strict-Transport-Security': 'max-age=47474747', 'x-amzn-Remapped-Content-Length': '28', 'X-Frame-Options': 'DENY', 'taapi-requestid': '480f6892-cee3-431c-835b-e06dbee9b285', 'Content-Security-Policy': \"default-src 'none';\", 'x-amz-apigw-id': 'bers2HtXPHcFX3g=', 'X-Content-Type-Options': 'nosniff', 'taapi-routing-info': '{\"serviceName\":\"TimeBankEmployeeAdapter\",\"endpoint\":\"https://a8vds2qwrg.execute-api.us-west-2.amazonaws.com\",\"cti\":{\"category\":\"HRIS - HR Systems\",\"type\":\"Time Bank\",\"item\":\"Development\"},\"contact\":{\"name\":\"TimeBank\",\"url\":\"https://w.amazon.com/bin/view/TimeBank/\",\"email\":\"timebank@amazon.com\"}}', 'x-amzn-Remapped-Date': 'Sun, 28 Feb 2021 23:25:09 GMT', 'X-Cache': 'Error from cloudfront', 'Via': '1.1 cd48ffda04934d18865e47e99ea080bc.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HIO50-C1', 'X-Amz-Cf-Id': 'c74_LS8c11Qxpr4qvSWP8s1uXtXD11S1wxNiDDouWdmrilmXmBWurQ=='}",
+  "taapi_request_id, url and PPE_EVAL_STATUS": "399cbd5f-aff3-4a61-99bc-021c57f8fcc2,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742?expand=profiles%252Cattributes,None\\n621d88be-7712-4b69-8ac2-7793a8c80561,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742?expand=profiles%252Cattributes,None\\n212092be-b7f7-41f0-9f3f-123753355c6a,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742?expand=profiles%252Cattributes,None\\na5fd6d2d-4daf-4676-b93e-d5c99cbbdfd6,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742/edds?documentKey=observedData&documentKey=anomalyData&startDate=2020-05-23&endDate=2020-05-23,PPE_EVAL_COMPLETED\\n3a453f33-244d-412c-85e9-9812739f2483,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-05-22T22%253A00%253A00Z&endDateTime=2020-05-23T21%253A59%253A59Z&employeeId=500006742,None\\nbdda91e0-734c-46a7-9901-11ca1b5b7a09,https://beta.api.time-attendance.a2z.com/v4/shifts/WES-6ebbf527-6a53-35f3-365c-e3e0e9f77a5f,None\\n93f2ac08-016f-46e8-8be1-19f19846cb67,https://beta.api.time-attendance.a2z.com/v4/shifts?startDateTime=2020-05-22T22%253A00%253A00Z&endDateTime=2020-05-23T21%253A59%253A59Z&employeeId=500006742,None\\n935c4900-379b-45e6-bfc3-d5d1afcea57f,https://beta.api.time-attendance.a2z.com/v1/time-off/requests?subjectId=500006742&startDateTime=2020-05-22T22%253A00%253A00Z&endDateTime=2020-05-23T21%253A59%253A00Z,None\\n13d1443e-90d6-4a9b-899d-bfaf2d597370,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742/edds?documentKey=scheduleData&startDate=2020-05-23&endDate=2020-05-23,PPE_EVAL_COMPLETED\\n4dc40059-6e27-4172-9fd3-612f8f6b1872,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742/edds?documentKey=scheduleData&startDate=2020-05-23&endDate=2020-05-23,PPE_EVAL_COMPLETED\\nbcc67500-43f0-4711-b3d3-1b1912611d69,https://beta.api.time-attendance.a2z.com/v1/employees/employeeid:500006742/edds?documentKey=timeOffData&startDate=2020-05-23&endDate=2020-05-23,PPE_EVAL_COMPLETED\\n14353214-656c-4bac-8ecd-8fb3f8ff4a39,https://beta.api.time-attendance.a2z.com/v4/shifts,None\\n480f6892-cee3-431c-835b-e06dbee9b285,https://beta.api.time-attendance.a2z.com/v1/time-off/requests/preview,None\\n",
+  "flow_of_control": "ExecutionEngineLambda-PantherCo-initializeTestData-1XJG83CBYRKG9\\nExecutionEngineLambda-Panth-clearAllEmployeeDataV2-IYPDZQKMVHP9\\nExecutionEngineLambda-PunchToPayStack-createShifts-Z6SL5SJOYCOT\\nExecutionEngineLambda-Pan-createTimeoffsWithSegmen-1JURHZR7H948G\\n",
+  "anomalies": "undefined\\n"
+}
