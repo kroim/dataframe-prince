@@ -7,10 +7,12 @@ from datetime import datetime, timedelta
 import random
 
 
+# change input date of all data for each group by employeeID with unique date in a group
 def check_unique_for_input_date(x, old_input):
     count = len(x)
     if count < 1:
         return old_input
+    employee_id = x.iloc[0]['testData.usecase_runconfig.employee.id']
     while True:
         arr = np.arange(1, count + 1) * 7
         for (i, item) in enumerate(arr):
@@ -19,8 +21,8 @@ def check_unique_for_input_date(x, old_input):
         np.random.shuffle(arr)
         td = pd.to_timedelta(arr, unit='d')
         delta_date = pd.to_datetime(old_input.loc[x.index, 'testData.usecase_runconfig.start_date']) + td
-        delta_date = pd.to_datetime(delta_date).dt.strftime("%m/%d/%Y")
-        flag, delta_date = check_api_call(count, delta_date)
+        delta_date = pd.to_datetime(delta_date).dt.strftime("%Y-%m-%d")
+        flag, delta_date = check_api_call(count, delta_date, employee_id)
         if not flag:
             continue
         old_input.loc[x.index, 'testData.usecase_runconfig.start_date'] = delta_date
@@ -31,6 +33,7 @@ def check_unique_for_input_date(x, old_input):
     return old_input
 
 
+# change input employeeID of all data for each group by employeeID
 def check_unique_for_input_employee(x, old_input):
     count = len(x)
     if count < 1:
@@ -40,20 +43,21 @@ def check_unique_for_input_employee(x, old_input):
     return old_input
 
 
-def check_api_call(count, dates):
+# create processes for requests
+def check_api_call(count, dates, employee_id):
     length = dates.values.__len__()
     executor = futures.ThreadPoolExecutor()
     for i in range(length):
         date = dates.values[i]
-        pool = executor.submit(task_api, date)
+        pool = executor.submit(task_api, (date, employee_id))
         response = pool.result()
         while not response:
             count = count + 1
             day_value = count * 7 % 450
             td = pd.to_timedelta(day_value, unit='d')
-            delta_date = datetime.strptime(date, "%m/%d/%Y") + td
-            new_date = delta_date.strftime("%m/%d/%Y")
-            pool = executor.submit(task_api, new_date)
+            delta_date = datetime.strptime(date, "%Y-%m-%d") + td
+            new_date = delta_date.strftime("%Y-%m-%d")
+            pool = executor.submit(task_api, (new_date, employee_id))
             response = pool.result()
             if not response:
                 continue
@@ -61,8 +65,11 @@ def check_api_call(count, dates):
     return True, dates
 
 
-def task_api(date):
-    url = "http://127.0.0.1:3330/api/ecat-test-response?date=" + date
+# api request function: args(date, employeeID)
+def task_api(args):
+    date = args[0]
+    employee_id = args[1]
+    url = "http://127.0.0.1:3330/api/ecat-test-response/employees/employeeid:" + str(employee_id) + "/?date=" + date
     response = requests.get(url, headers={"Accept-Encoding": "gzip, deflate, br", "UserToken": "WordEventsQA"})
     if response.status_code == 404:
         return False
@@ -70,55 +77,7 @@ def task_api(date):
         return True
 
 
-def change_input_df(input_data, name, change_path, change_value):
-    input_len = len(input_data)
-    paths = change_path.split(".")
-    new_input_data = []
-    for i in range(input_len):
-        input_item = input_data[i]
-        if not name == input_item['name']:
-            new_input_data.append(input_item)
-            continue
-        path_data = {}
-        keys = input_item.keys()
-        new_item_data = {}
-        for j in range(len(paths)):
-            if j == 0:
-                if paths[j] not in keys:
-                    return False
-                else:
-                    for key in keys:
-                        if key == paths[j]:
-                            path_data = input_item[paths[j]]
-                            if type(path_data) is not dict:
-                                path_data = json.loads(path_data)
-                            new_item_data[key] = path_data
-                        else:
-                            new_item_data[key] = input_item[key]
-                    keys = path_data.keys()
-            else:
-                if paths[j] not in keys:
-                    return False
-                if j == len(paths) - 1:
-                    path_data[paths[j]] = change_value
-                new_path_data = {}
-                new_path_keys = {}
-                for key in keys:
-                    if j == 1:
-                        new_item_data[paths[0]][key] = path_data[key]
-                    elif j == 2:
-                        new_item_data[paths[0]][paths[1]][key] = path_data[key]
-                    if key == paths[j] and j < len(paths) - 1:
-                        new_path_data = path_data[key]
-                        new_path_keys = new_path_data.keys()
-                if j < len(paths) - 1:
-                    path_data = new_path_data
-                    keys = new_path_keys
-        new_input_data.append(new_item_data)
-    print(new_input_data)
-    return new_input_data
-
-
+# check output status
 def check_output(out_data):
     if out_data['status'] == "PASSED":
         return True
@@ -126,6 +85,7 @@ def check_output(out_data):
         return False
 
 
+# change input data when case is dates for all data
 def change_date(input_data):
     input_df = pd.json_normalize(input_data)
     group_by = input_df.groupby('testData.usecase_runconfig.employee.id', group_keys=False)
@@ -136,6 +96,7 @@ def change_date(input_data):
     return new_input
 
 
+# change employeeID when case is employee for all data
 def change_employee(input_data):
     input_df = pd.json_normalize(input_data)
     group_by = input_df.groupby('testData.usecase_runconfig.employee.id', group_keys=False)
@@ -146,19 +107,21 @@ def change_employee(input_data):
     return new_input
 
 
+# change input data when case is date for failed output
 def change_date_from_output(x, old_input):
     mask = x['status'] == 'FAILED'
     count = mask.sum()
     if count == 0:
         return old_input
     indexes = x.loc[mask]
+    employee_id = indexes.iloc[0]['employee_id']
     while True:
         arr = np.arange(1, count + 1) * 7
         np.random.shuffle(arr)
         td = pd.to_timedelta(arr, unit='d')
         delta_date = pd.to_datetime(old_input.loc[indexes.index, 'testData.usecase_runconfig.start_date']) + td
-        delta_date = pd.to_datetime(delta_date).dt.strftime("%m/%d/%Y")
-        flag, delta_date = check_api_call(count, delta_date)
+        delta_date = pd.to_datetime(delta_date).dt.strftime("%Y-%m-%d")
+        flag, delta_date = check_api_call(count, delta_date, employee_id)
         if not flag:
             continue
         old_input.loc[indexes.index, 'testData.usecase_runconfig.start_date'] = delta_date
@@ -169,6 +132,7 @@ def change_date_from_output(x, old_input):
     return old_input
 
 
+# change input data when case is employee for failed output
 def change_employee_from_output(x, old_input):
     mask = x['status'] == 'FAILED'
     count = mask.sum()
@@ -180,6 +144,7 @@ def change_employee_from_output(x, old_input):
     return old_input
 
 
+# change input data from failed output
 def change_failed_case(input_data, output_data, change_case):
     input_df = pd.json_normalize(input_data)
     output_df = pd.json_normalize(output_data)
@@ -201,6 +166,7 @@ def change_failed_case(input_data, output_data, change_case):
     return new_input
 
 
+# make a json file from dataframe for input data
 def print_json_from_input_df(data_frame, output_file):
     output = data_frame.to_json(orient="records")
     json_data = json.loads(output)
@@ -211,7 +177,8 @@ def print_json_from_input_df(data_frame, output_file):
         employee_data['id'] = item['testData.usecase_runconfig.employee.id']
         employee_data['group'] = item['testData.usecase_runconfig.employee.group']
         usecase_runconfig = {}
-        usecase_runconfig['start_date'] = item['testData.usecase_runconfig.start_date']
+        start_date = item['testData.usecase_runconfig.start_date']
+        usecase_runconfig['start_date'] = datetime.strptime(start_date, '%Y-%m-%d').strftime('%m/%d/%y')
         usecase_runconfig['end_date'] = item['testData.usecase_runconfig.end_date']
         usecase_runconfig['is_holiday'] = item['testData.usecase_runconfig.is_holiday']
         usecase_runconfig['employee'] = employee_data
@@ -235,6 +202,7 @@ def print_json_from_input_df(data_frame, output_file):
         f.write(new_output_data)
 
 
+# make a dataframe data from input json file
 def read_json_file(filename):
     data = []
     with open(filename, 'r') as f:
@@ -245,6 +213,7 @@ def read_json_file(filename):
     return data
 
 
+# make a dataframe data from output json file
 def read_output_file(filename):
     with open(filename) as of:
         str_data = '['
@@ -282,4 +251,4 @@ def change_failed_values(input_file, output_file, change_case):
 
 
 # change_all_values("eg_input", "employee")
-change_failed_values("eg_input", "eg_output", "dates")
+# change_failed_values("eg_input", "eg_output", "dates")

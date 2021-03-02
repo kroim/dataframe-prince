@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime, timedelta
 import requests
 from concurrent import futures
+import json
 
 output_df = pd.DataFrame(
     {
@@ -74,6 +75,56 @@ def task_api(date):
         return False
     else:
         return True
+
+
+
+def change_input_df(input_data, name, change_path, change_value):
+    input_len = len(input_data)
+    paths = change_path.split(".")
+    new_input_data = []
+    for i in range(input_len):
+        input_item = input_data[i]
+        if not name == input_item['name']:
+            new_input_data.append(input_item)
+            continue
+        path_data = {}
+        keys = input_item.keys()
+        new_item_data = {}
+        for j in range(len(paths)):
+            if j == 0:
+                if paths[j] not in keys:
+                    return False
+                else:
+                    for key in keys:
+                        if key == paths[j]:
+                            path_data = input_item[paths[j]]
+                            if type(path_data) is not dict:
+                                path_data = json.loads(path_data)
+                            new_item_data[key] = path_data
+                        else:
+                            new_item_data[key] = input_item[key]
+                    keys = path_data.keys()
+            else:
+                if paths[j] not in keys:
+                    return False
+                if j == len(paths) - 1:
+                    path_data[paths[j]] = change_value
+                new_path_data = {}
+                new_path_keys = {}
+                for key in keys:
+                    if j == 1:
+                        new_item_data[paths[0]][key] = path_data[key]
+                    elif j == 2:
+                        new_item_data[paths[0]][paths[1]][key] = path_data[key]
+                    if key == paths[j] and j < len(paths) - 1:
+                        new_path_data = path_data[key]
+                        new_path_keys = new_path_data.keys()
+                if j < len(paths) - 1:
+                    path_data = new_path_data
+                    keys = new_path_keys
+        new_input_data.append(new_item_data)
+    print(new_input_data)
+    return new_input_data
 
 
 group_by = output_df.groupby('output_carId', group_keys=False)
