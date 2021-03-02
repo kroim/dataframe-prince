@@ -5,6 +5,7 @@ import requests
 from concurrent import futures
 from datetime import datetime, timedelta
 import random
+import holidays
 
 
 # change input date of all data for each group by employeeID with unique date in a group
@@ -13,6 +14,8 @@ def check_unique_for_input_date(x, old_input):
     if count < 1:
         return old_input
     employee_id = x.iloc[0]['testData.usecase_runconfig.employee.id']
+    holiday_mask = x['testData.usecase_runconfig.is_holiday']
+    holiday_count = holiday_mask.sum()
     while True:
         arr = np.arange(1, count + 1) * 7
         for (i, item) in enumerate(arr):
@@ -21,8 +24,14 @@ def check_unique_for_input_date(x, old_input):
         np.random.shuffle(arr)
         td = pd.to_timedelta(arr, unit='d')
         delta_date = pd.to_datetime(old_input.loc[x.index, 'testData.usecase_runconfig.start_date']) + td
+        holiday_index = []
+        if holiday_count > 0:
+            holiday_items = x.loc[holiday_mask]
+            holiday_dates = select_holiday(holiday_count)
+            delta_date.loc[holiday_items.index] = holiday_dates
+            holiday_index = holiday_items.index
         delta_date = pd.to_datetime(delta_date).dt.strftime("%Y-%m-%d")
-        flag, delta_date = check_api_call(count, delta_date, employee_id)
+        flag, delta_date = check_api_call(count, delta_date, employee_id, holiday_index)
         if not flag:
             continue
         old_input.loc[x.index, 'testData.usecase_runconfig.start_date'] = delta_date
@@ -44,24 +53,33 @@ def check_unique_for_input_employee(x, old_input):
 
 
 # create processes for requests
-def check_api_call(count, dates, employee_id):
+def check_api_call(count, dates, employee_id, holiday_index):
     length = dates.values.__len__()
+    holiday_indexes = []
+    for k in range(len(holiday_index)):
+        holiday_indexes.append(holiday_index[k])
+    print("holiday index: ", holiday_indexes)
     executor = futures.ThreadPoolExecutor()
     for i in range(length):
         date = dates.values[i]
+        index = dates.index[i]
         pool = executor.submit(task_api, (date, employee_id))
         response = pool.result()
         while not response:
-            count = count + 1
-            day_value = count * 7 % 450
-            td = pd.to_timedelta(day_value, unit='d')
-            delta_date = datetime.strptime(date, "%Y-%m-%d") + td
-            new_date = delta_date.strftime("%Y-%m-%d")
+            if index in holiday_indexes:
+                new_date = select_holiday(1)[0]
+            else:
+                count = count + 1
+                day_value = count * 7 % 450
+                td = pd.to_timedelta(day_value, unit='d')
+                delta_date = datetime.strptime(date, "%Y-%m-%d") + td
+                new_date = delta_date.strftime("%Y-%m-%d")
             pool = executor.submit(task_api, (new_date, employee_id))
             response = pool.result()
             if not response:
                 continue
             dates.values[i] = new_date
+    print(dates)
     return True, dates
 
 
@@ -115,13 +133,21 @@ def change_date_from_output(x, old_input):
         return old_input
     indexes = x.loc[mask]
     employee_id = indexes.iloc[0]['employee_id']
+    holiday_mask = x['testData.usecase_runconfig.is_holiday']
+    holiday_count = holiday_mask.sum()
     while True:
         arr = np.arange(1, count + 1) * 7
         np.random.shuffle(arr)
         td = pd.to_timedelta(arr, unit='d')
         delta_date = pd.to_datetime(old_input.loc[indexes.index, 'testData.usecase_runconfig.start_date']) + td
+        holiday_index = []
+        if holiday_count > 0:
+            holiday_items = x.loc[holiday_mask]
+            holiday_dates = select_holiday(holiday_count)
+            delta_date.loc[holiday_items.index] = holiday_dates
+            holiday_index = holiday_items.index
         delta_date = pd.to_datetime(delta_date).dt.strftime("%Y-%m-%d")
-        flag, delta_date = check_api_call(count, delta_date, employee_id)
+        flag, delta_date = check_api_call(count, delta_date, employee_id, holiday_index)
         if not flag:
             continue
         old_input.loc[indexes.index, 'testData.usecase_runconfig.start_date'] = delta_date
@@ -227,6 +253,17 @@ def get_valid_employee_id_from_merlin(presetId, populationId):
     return new_employeeId
 
 
+def select_holiday(num):
+    _holidays = []
+    for date in holidays.UnitedStates(years=2021).items():
+        _holidays.append(str(date[0]))
+    res = []
+    for i in range(num):
+        rnd = random.randint(0, len(_holidays) - 1)
+        res.append(_holidays[rnd])
+    return res
+
+
 # module 1
 def change_all_values(input_file, change_case):
     input_data = read_json_file(input_file)
@@ -250,5 +287,5 @@ def change_failed_values(input_file, output_file, change_case):
     print_json_from_input_df(new_input_data, "new_output_from_failed_date")
 
 
-# change_all_values("eg_input", "employee")
-# change_failed_values("eg_input", "eg_output", "dates")
+# change_all_values("eg_input", "dates")
+change_failed_values("eg_input", "eg_output", "dates")

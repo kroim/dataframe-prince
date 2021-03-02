@@ -8,7 +8,7 @@
     "usecase_runconfig": {
       "start_date": "2020-06-29",
       "end_date": "2020-06-29",
-      "is_holiday": false,
+      "is_holiday": true,
       "employee": {
         "id": "500006740",
         "group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
@@ -532,7 +532,7 @@
     "usecase_runconfig": {
       "start_date": "2020-05-23",
       "end_date": "2020-05-23",
-      "is_holiday": false,
+      "is_holiday": true,
       "employee": {
         "id": "500006742",
         "group": "Amazon_Part_Time_Hourly_TRD-ITALY-PN",
