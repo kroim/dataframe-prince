@@ -8,6 +8,9 @@ import random
 import holidays
 
 
+filename = "failed_cases"
+
+
 # change input date of all data for each group by employeeID with unique date in a group
 def check_unique_for_input_date(x, old_input):
     count = len(x)
@@ -58,7 +61,7 @@ def check_api_call(count, dates, employee_id, holiday_index):
     holiday_indexes = []
     for k in range(len(holiday_index)):
         holiday_indexes.append(holiday_index[k])
-    print("holiday index: ", holiday_indexes)
+    # print("holiday index: ", holiday_indexes)
     executor = futures.ThreadPoolExecutor()
     for i in range(length):
         date = dates.values[i]
@@ -79,7 +82,7 @@ def check_api_call(count, dates, employee_id, holiday_index):
             if not response:
                 continue
             dates.values[i] = new_date
-    print(dates)
+    # print(dates)
     return True, dates
 
 
@@ -204,7 +207,7 @@ def print_json_from_input_df(data_frame, output_file):
         employee_data['group'] = item['testData.usecase_runconfig.employee.group']
         usecase_runconfig = {}
         start_date = item['testData.usecase_runconfig.start_date']
-        usecase_runconfig['start_date'] = datetime.strptime(start_date, '%Y-%m-%d').strftime('%m/%d/%y')
+        usecase_runconfig['start_date'] = datetime.strptime(start_date, '%Y-%m-%d').strftime('%m/%d/%Y')
         usecase_runconfig['end_date'] = item['testData.usecase_runconfig.end_date']
         usecase_runconfig['is_holiday'] = item['testData.usecase_runconfig.is_holiday']
         usecase_runconfig['employee'] = employee_data
@@ -218,8 +221,8 @@ def print_json_from_input_df(data_frame, output_file):
         item_data['description'] = item['description']
         item_data['name'] = item['name']
         item_data['testData'] = test_data
-        item_data = str(item_data).replace('\'', '\"')
-        item_data = item_data.encode('utf-8').decode('unicode-escape')
+        item_data = str(item_data).replace('\'', '\"').replace('False', 'false').replace('True', 'true')
+        item_data = item_data.encode('utf-8').decode('unicode-escape').replace(': \\"None\\"', ': None')
         if i == 0:
             new_output_data += item_data
         else:
@@ -234,7 +237,10 @@ def read_json_file(filename):
     with open(filename, 'r') as f:
         lines = [json.loads(_.replace('}]}"},', '}]}"}')) for _ in f.readlines()]
     for line in lines:
-        line['testData'] = json.loads(line['testData'])
+        line_test_data = line['testData']
+        line_test_data = line_test_data.replace(": None", ": \"None\"").replace("\n", "")
+        # print(line_test_data)
+        line['testData'] = json.loads(line_test_data)
         data.append(line)
     return data
 
@@ -270,11 +276,11 @@ def change_all_values(input_file, change_case):
     if change_case == "dates":
         # change date
         new_input = change_date(input_data)
-        print_json_from_input_df(new_input, "new_output")
+        print_json_from_input_df(new_input, "new_output_from_all_date")
     elif change_case == "employee":
         # change employeeId
         new_input = change_employee(input_data)
-        print_json_from_input_df(new_input, "new_output")
+        print_json_from_input_df(new_input, "new_output_from_employee")
     else:
         print("Undefined change case")
 
@@ -287,5 +293,8 @@ def change_failed_values(input_file, output_file, change_case):
     print_json_from_input_df(new_input_data, "new_output_from_failed_date")
 
 
+# change_all_values(filename, "dates")
 # change_all_values("eg_input", "dates")
-change_failed_values("eg_input", "eg_output", "dates")
+# change_failed_values("eg_input", "eg_output", "dates")
+dataframe = read_json_file(filename)
+print(dataframe)
