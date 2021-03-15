@@ -1,0 +1,18 @@
+[
+    {
+        "name of error type": "{\"errorMessage\": \"Validation failure",
+        "length": 2,
+        "full list of case_id": [
+            "1",
+            "2"
+        ]
+    },
+    {
+        "name of error type": "{\"errorMessage\": \"Validation1 failur",
+        "length": 2,
+        "full list of case_id": [
+            "3",
+            "4"
+        ]
+    }
+]
